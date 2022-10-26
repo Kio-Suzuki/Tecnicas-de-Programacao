@@ -20,7 +20,6 @@ int main()
     printf ("%d\n", *y);
     printf ("%d\n", *z);
     printf ("%d\n", **med);
-
     if ((**med/3) >= 6){
         printf ("Aprovado!");
     }else{
