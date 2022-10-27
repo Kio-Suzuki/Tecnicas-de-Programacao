@@ -19,6 +19,6 @@ void multiplicaVetor(int x[], int y[])
 {
     int z[5];
     for (int i = 0; i < 5; i++){
-        printf ("%d\n", x[i] * y[i]);
+        printf ("%d x %d = %d\n", x[i], y[i], x[i] * y[i]);
     }
 }
