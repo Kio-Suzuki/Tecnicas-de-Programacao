@@ -1,29 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void atribuiNota(float nota[]);
+
 int main()
 {
-    float nota[3], media;
+    float nota[3];
     float *p, *q, *r;
+    atribuiNota(nota);
     p = &nota[0];
     q = p + 1;
     r = q + 1;
-     
-    atribuiNota(nota, &media);
-    
-    printf ("p = %.1f\n", *p);
-    printf ("q = %.1f\n", *q);
-    printf ("r = %.1f\n", *r);
-    printf ("media = %.1f\n", media);
+    if ((*p + *q + *r)/3 >= 6){
+        printf ("Aprovado");
+    }else{
+        printf ("Reprovado");
+    }
+    return 0;
 }
 
-void atribuiNota(float x[], float *media)
+void atribuiNota(float x[])
 {
     for (int i = 0; i < 3; i++){
         printf ("Digite a nota: ");
         scanf ("%f", &x[i]);
-        *media = ((x[0] + x[1] + x[2])/3);
-    }
-
-    
+    } 
 }
