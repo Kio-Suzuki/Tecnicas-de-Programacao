@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 struct Estudante{
     char nome[50];
@@ -8,20 +9,25 @@ struct Estudante{
 
 int main()
 {
+    
+    
+    struct Estudante *e;
     int n;
     printf ("Numero de estudantes: ");
     scanf ("%d", &n);
-    struct Estudante e[n];
-    fflush(stdin);
+    n = (int *) malloc(n * sizeof(struct Estudante));
+
+
     for (int i = 0; i < n; i++){
         printf ("Nome: ");
-        scanf ("%s", e[n].nome);
+        scanf ("%s", e[i].nome);
+        fflush(stdin);
         printf ("Curso: ");   
-         scanf ("%s", e[n].curso);
+        scanf ("%s", e[i].curso);
         printf ("Nota 1: ");
-        scanf ("%f", &e[n].nota1);   
+        scanf ("%f", &e[i].nota1);   
         printf ("Nota 2: ");   
-        scanf ("%f", &e[n].nota2);
-        e[n].media = (e[n].nota1 + e[n].nota2)/2;  
+        scanf ("%f", &e[i].nota2);
+        e[i].media = (e[i].nota1 + e[i].nota2)/2;  
     }
 }
