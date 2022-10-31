@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct 
 {
@@ -12,22 +14,17 @@ int main()
 {
     aluno a1;
     aluno *paluno = &a1;
-   // printf ("ID: ");
-    //scanf ("%d ", (*paluno).ID);
-   // printf ("Nome: ");
-   // scanf ("%s", (*paluno).nome);
-    //printf ("Idade: ");
-    //scanf ("%d", (*paluno).idade);
-    //printf ("Nota: ");
-    //scanf ("%f", (*paluno).nota);
-    (*paluno).ID = 5;
-    (*paluno).nome[50] = "Marcelo";
-    (*paluno).idade = 18;
-    (*paluno).nota = 8.5;
-
+    printf ("ID: ");
+    scanf ("%d", &paluno->ID);
+    printf ("Nome: ");
+    scanf ("%s", &paluno->nome);
+    printf ("Idade: ");
+    scanf ("%d", &paluno->idade);
+    printf ("Nota: ");
+    scanf ("%f", &paluno->nota);
     printf ("Apresentacao utilizando a variavel:\n");
     printf ("ID: %d\n", a1.ID);
-    printf ("Nome: %s\n", a1.nome);
+    printf ("Nome: %s \n", a1.nome);
     printf ("Idade: %d\n", a1.idade);
     printf ("Nota: %.1f\n", a1.nota);
     printf ("Apresentacao utilizando o ponteiro:\n");
