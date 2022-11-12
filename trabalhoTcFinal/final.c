@@ -7,17 +7,33 @@
 // STRUCTS
 
 
-struct pessoas{};
+typedef struct pessoas{
+    int cpf, ddd, numero, codigo=numeroRandom();
+    char nome[50], sobrenome[50];
+    
+    
+}pes;
 
-struct pontes{};
+struct pontes{
+    int cpf, ddd, numero, codigo=numeroRandom();
+    char nome[50], sobrenome[50];
+};
 
-struct restaurant{};
+struct restaurant{
+    int cep;
+    char nome[50];
+    endereço
+};
 
 struct ciclos{
+    int 
     struct restaurant;
 };
 
-struct parceiros{};
+struct parceiros{
+    int nome;
+    
+};
 
 
 //FUNÇÕES (PROTOTIPOS)
