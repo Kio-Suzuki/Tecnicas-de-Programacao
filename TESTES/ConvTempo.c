@@ -1,12 +1,15 @@
 #include <stdio.h>
- 
-int main() {
-    int A, B, C, D;
-    scanf ("%d %d %d %d", &A, &B, &C, &D);
-    if (B > C && D > A && (C+D) > (A+B) && C > 0 && D > 0 && A%2==0){
-        printf ("valores aceitos\n");
+#include <stdlib.h>
+
+int main (){
+    char *ptr;
+    ptr = malloc (1);
+    if (ptr == NULL) {
+        printf("Espaço insuficiente.\n");
+        exit(0);
     }else{
-        printf ("Valores nao aceitos\n");
+        printf("Espaço alocado");
     }
+    free(ptr);
     return 0;
 }
