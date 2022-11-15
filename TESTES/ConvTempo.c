@@ -1,15 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main (){
-    char *ptr;
-    ptr = malloc (1);
-    if (ptr == NULL) {
-        printf("Espaço insuficiente.\n");
-        exit(0);
-    }else{
-        printf("Espaço alocado");
-    }
-    free(ptr);
+    int v;
+    srand(time(NULL));
+    v = rand() % 100;
+    printf ("v = %d", v);
     return 0;
 }

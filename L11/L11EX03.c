@@ -11,14 +11,15 @@ int main()
     v = malloc (n * sizeof(int));
     preencheVetor(&v, n);
     for(int i = 0; i < n; i++){
-        printf ("%f\n", v+i);
+        printf ("%d\n", v);
     }
     free(v);
 }
 
 void preencheVetor(int *v, int n)
 {
+    srand(time(NULL));
     for(int i = 0; i < n; i++){
-        v[i] = rand() % 100;
+        v[i] = rand()%100;
     }
 }
