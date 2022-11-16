@@ -11,7 +11,7 @@ int main()
     vet = malloc(n * sizeof(int));
     for (int i = 0; i < n; i++){
         vet[i] = 1+i;
-        printf ("%d\n", vet[i]);
+        printf ("vet[%d] = %d\n", i, vet[i]);
     }
     printf ("Qual valor deseja procurar: ");
     scanf ("%d", &x);
@@ -20,11 +20,16 @@ int main()
 
 int procura(int *vet, int n, int x)
 {
+    int cont = 0;
     for (int i = 0; i < n; i++){
+        printf ("vet[%d] = %d\n", i, vet[i]);
         if (vet[i] == x){
-            return 1;
-        }else{
-            return 0;
-        }  
+            cont+1;    
+        }
+    }
+    if (cont == 1){
+        return 1;
+    }else{
+        return 0;
     }
 }
