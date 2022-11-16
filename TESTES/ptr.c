@@ -1,11 +1,20 @@
 #include <stdio.h>
-int main()
-{
-    int idade = 10;
-    int *ptr;
-    ptr = &idade;
-    printf ("Variavel idade: %d\n", idade);
-    printf ("Variavel ponteiro ptr: %x\n", ptr);
-    printf ("Variavel ponteiro ptr: %d\n", *ptr);
-    return 0;
-}
+#include <stdlib.h>
+
+int main() {
+    int i, *ptrA;
+    ptrA = (int *) malloc (5 * sizeof(int));
+    printf("ptrA: %d\n", ptrA[0]);
+    if(ptrA != NULL){
+        printf("Memoria alocada via malloc\n");
+    }
+    int *ptrB;
+    ptrB = (int *) calloc (5, sizeof(int));
+    printf("ptrB: %d\n", ptrB[0]);
+    if(ptrB != NULL){
+        printf("Memoria alocada via calloc\n");
+    }
+    free(ptrA);
+    free(ptrB);
+    return 0; 
+ }
