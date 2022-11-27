@@ -1,0 +1,10 @@
+Nome: Lucio da Cruz
+Gênero: m
+CPF: 1328495932
+Data de nascimento 10/10/2000
+Logradouro: Souza Naves
+Número:45
+CEP: 86032390
+Cidade: Londrina
+Estado: �Telefone (43) 33008054
+Celular (43) 999327511

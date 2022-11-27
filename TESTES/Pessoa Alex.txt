@@ -1,0 +1,10 @@
+Nome: Alex Souza
+Genero: m
+CPF: 728775954
+ Data de nascimento 10/10/2000
+Logradouro: Alagoas
+Numero:100
+CEP: 86030360
+Cidade: Londrina
+Estado: PTelefone (6422476) 1979965808
+Celular (6422476) 104237498
