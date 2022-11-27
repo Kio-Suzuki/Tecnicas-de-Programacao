@@ -41,7 +41,7 @@ typedef struct dadosVoluntario{
     cod_p codigo;
     char nome[50];
     char sobrenome[50];
-    int cpf;
+    char cpf[20];
     char genero;
     data data;
     end endereco;
@@ -51,7 +51,7 @@ typedef struct dadosVoluntario{
 typedef struct cdadosPessoaisFisica{
     char nome[50];
     char genero;
-    int cpf;
+    char cpf[20];
     int priori;
     int idade;
     data nascimento;
@@ -164,7 +164,8 @@ pfisica cadastrarPessoa(void)
     fflush(stdin);
     fgets (p.nome, 50, stdin);
     printf ("CPF: ");
-    scanf ("%d", &p.cpf);
+    fflush(stdin);
+    fgets (p.cpf, 20, stdin);
     printf ("Genero: ");
     scanf (" %c", &p.genero);
     printf ("Nascimento\n");
@@ -196,7 +197,7 @@ pfisica cadastrarPessoa(void)
     printf ("Celular: ");
     scanf ("%d", &p.telefone.celular);
     printf ("Cadastro realizado com sucesso!\n");
-    fprintf(fp, "Nome: %sGênero: %c\nCPF: %d\nData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", p.nome, p.genero, p.cpf,  p.nascimento.dia, p.nascimento.mes, p.nascimento.ano, p.endereco.logradouro, p.endereco.numero, p.endereco.cep, p.endereco.cidade, p.endereco.estado, p.telefone.ddd, p.telefone.fixo, p.telefone.ddd, p.telefone.celular);
+    fprintf(fp, "Nome: %sGênero: %c\nCPF: %sData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", p.nome, p.genero, p.cpf,  p.nascimento.dia, p.nascimento.mes, p.nascimento.ano, p.endereco.logradouro, p.endereco.numero, p.endereco.cep, p.endereco.cidade, p.endereco.estado, p.telefone.ddd, p.telefone.fixo, p.telefone.ddd, p.telefone.celular);
     fclose(fp);
     return p;
 }
@@ -306,16 +307,8 @@ pfisica apresentarPessoa(void)
     sprintf(filename, "Pessoa %s.txt", nome);
     fp = fopen(filename,"r");
     if (fp){
-        fscanf(fp, "Nome: %sGênero: %c\nCPF: %d\nData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", p.nome, &p.genero, &p.cpf,  &p.nascimento.dia, &p.nascimento.mes, &p.nascimento.ano, p.endereco.logradouro, &p.endereco.numero, &p.endereco.cep, p.endereco.cidade, p.endereco.estado, &p.telefone.ddd, &p.telefone.fixo, &p.telefone.ddd, &p.telefone.celular);
-        printf ("Nome: %s", p.nome);
-        printf ("CPF: %d", p.cpf);
-        printf ("Genero: %s", p.genero);
-        printf ("Data de nascimento: %d/%d/%d", p.nascimento.dia, p.nascimento.mes, p.nascimento.ano);
-        printf ("Logradouro: %s", p.endereco.logradouro);
-        printf ("Numero: %d", p.endereco.numero);
-        printf ("CEP: %d", p.endereco.cep);
-        printf ("Cidade: %s", p.endereco.cidade);
-        printf ("Estado: %s", p.endereco.estado);
+        fscanf(fp, "%s%s%s%s", p.nome);
+        printf("%s %s", p.nome);
     }else{
         printf ("Falha ao abrir o arquivo");
     }
