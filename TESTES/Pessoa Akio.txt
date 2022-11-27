@@ -1,6 +1,11 @@
-Akio
-20
-Paquistao
-20
-86040300
-Londrina
+Nome: Allisson Akio
+Gênero: m
+CPF: 2134659642
+Data de nascimento 11/5/1988
+Logradouro: Paquistao
+Número:73
+CEP: 86046380
+Cidade: Londrina
+Estado: PR
+Telefone (43) 33048840
+Celular (43) 999348504
