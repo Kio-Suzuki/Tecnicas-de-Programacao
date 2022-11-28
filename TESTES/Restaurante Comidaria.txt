@@ -1,8 +1,0 @@
-Nome: Comidaria LTDA
-CNPJ: 2003486594
-Logradouro: Hugo Cabral
-Numero:100
-CEP: 86050320
-Cidade: Londrina
-Estado: PR+Telefone (43) 33990604
-Celular (43) 999912332

@@ -1,0 +1,11 @@
+Nome: Pedro Souza
+Gênero: m
+CPF: 04220030394
+Data de nascimento 1/5/1996
+Logradouro: Porto Alegre
+Número:95
+CEP: 85030200
+Cidade: Cornelio Procopio
+Estado: PR
+Telefone (43) 34001000
+Celular (43) 999801214

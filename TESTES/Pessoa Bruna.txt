@@ -1,0 +1,11 @@
+Nome: Bruna Alves
+Gênero: f
+CPF: 05632864312
+Data de nascimento 10/4/2002
+Logradouro: Sergipe
+Número:12
+CEP: 86040310
+Cidade: Londrina
+Estado: PR
+Telefone (43) 33001012
+Celular (43) 988602323

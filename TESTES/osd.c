@@ -68,7 +68,7 @@ typedef struct doacao{
 typedef struct dadosRestaurantes{
     cod_e codigo;
     char nome[50];
-    int cnpj;
+    char cnpj[30];
     end endereco;
     tel telefone;
     doa doacao;
@@ -76,9 +76,12 @@ typedef struct dadosRestaurantes{
 
 void apresentarMenu();
 pfisica cadastrarPessoa(void);
-rest cadastrarRestaurante(void);
 vol cadastrarVoluntario(void);
+rest cadastrarRestaurante(void);
 pfisica apresentarPessoa(void);
+vol apresentarVoluntario(void);
+rest apresentarRestaurante(void);
+
 
 int main()
 {
@@ -106,6 +109,8 @@ void apresentarMenu(pfisica p1, rest r1, vol v1)
             printf ("2 - Cadastrar voluntario\n");
             printf ("3 - Cadastrar Restaurante\n");
             printf ("4 - Pesquisar Pessoa\n");
+            printf ("5 - Pesquisar Voluntario\n");
+            printf ("6 - Pesquisar Restaurante\n");
             printf ("0 - Sair\n");
             printf ("Opcao: ");
             scanf ("%d", &opt);
@@ -126,15 +131,24 @@ void apresentarMenu(pfisica p1, rest r1, vol v1)
             case 4:
                 p1 = apresentarPessoa();
                 break;
+
+            case 5:
+                v1 = apresentarVoluntario();
+                break;
+
+            case 6:
+                r1 = apresentarRestaurante();
+                break;
             
             case 0:
                 printf ("Ate mais!");
                 break;
+
             default:
                 printf ("Escolha outra opcao");
                 break;
             }
-        }while(opt == 1 || opt == 2);
+        }while(opt >= 1 && opt <= 6);
             break;
     
     case 2:
@@ -192,7 +206,7 @@ pfisica cadastrarPessoa(void)
     printf ("Telefone (caso não tenha digite 0 nas opções seguintes)\n");
     printf ("DDD: ");
     scanf ("%d", &p.telefone.ddd);
-    printf ("Telefone: ");
+    printf ("Telefone fixo: ");
     scanf ("%d", &p.telefone.fixo);
     printf ("Celular: ");
     scanf ("%d", &p.telefone.celular);
@@ -217,7 +231,8 @@ rest cadastrarRestaurante(void)
     fflush(stdin);
     fgets (r.nome, 50, stdin);
     printf ("CNPJ: ");
-    scanf ("%d", &r.cnpj);
+    fflush(stdin);
+    fgets (r.cnpj, 30, stdin);
     printf ("Endereco\n");
     printf ("Rua: ");
     fflush(stdin);
@@ -235,7 +250,7 @@ rest cadastrarRestaurante(void)
     printf ("Telefone\n");
     printf ("DDD: ");
     scanf ("%d", &r.telefone.ddd);
-    printf ("Telefone: ");
+    printf ("Telefone fixo: ");
     scanf ("%d", &r.telefone.fixo);
     printf ("Celular: ");
     scanf ("%d", &r.telefone.celular);
@@ -258,10 +273,11 @@ vol cadastrarVoluntario(void)
     printf ("\nNome completo: ");
     fflush(stdin);
     fgets (v.nome, 50, stdin);
+    printf ("CPF: ");
+    fflush(stdin);
+    sfgets (v.cpf, 20, stdin);
     printf ("Genero: ");
     scanf ("%c", &v.genero);
-    printf ("CPF: ");
-    scanf ("%d", &v.cpf);
     printf ("Nascimento\n");
     printf ("Dia: ");
     scanf ("%d", &v.data.dia);
@@ -286,7 +302,7 @@ vol cadastrarVoluntario(void)
     printf ("Telefone\n");
     printf ("DDD: ");
     scanf ("%d", &v.telefone.ddd);
-    printf ("Telefone: ");
+    printf ("Telefone fixo: ");
     scanf ("%d", &v.telefone.fixo);
     printf ("Celular: ");
     scanf ("%d", &v.telefone.celular);
@@ -302,13 +318,60 @@ pfisica apresentarPessoa(void)
     FILE *fp;
     char nome[50];
     char filename[50];
+    char linha[200];
     printf("Digite o nome: ");
     scanf("%s", nome);
     sprintf(filename, "Pessoa %s.txt", nome);
     fp = fopen(filename,"r");
     if (fp){
-        fscanf(fp, "%s%s%s%s", p.nome);
-        printf("%s %s", p.nome);
+        while(!feof(fp)){
+            fgets(linha, 200, fp);
+            puts(linha);
+        }
+    }else{
+        printf ("Falha ao abrir o arquivo");
+    }
+    fclose(fp);
+}
+
+vol apresentarVoluntario(void)
+{
+    vol r;
+    FILE *fp;
+    char nome[50];
+    char filename[50];
+    char linha[200];
+    printf("Digite o nome: ");
+    scanf("%s", nome);
+    sprintf(filename, "Voluntario %s.txt", nome);
+    fp = fopen(filename,"r");
+    if (fp){
+        while(!feof(fp)){
+            fgets(linha, 200, fp);
+            puts(linha);
+        }
+    }else{
+        printf ("Falha ao abrir o arquivo");
+    }
+    fclose(fp);
+}
+
+rest apresentarRestaurante(void)
+{
+    rest r;
+    FILE *fp;
+    char nome[50];
+    char filename[50];
+    char linha[200];
+    printf("Digite o nome: ");
+    scanf("%s", nome);
+    sprintf(filename, "Pessoa %s.txt", nome);
+    fp = fopen(filename,"r");
+    if (fp){
+        while(!feof(fp)){
+            fgets(linha, 200, fp);
+            puts(linha);
+        }
     }else{
         printf ("Falha ao abrir o arquivo");
     }
