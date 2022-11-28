@@ -16,7 +16,7 @@ typedef struct data{
 }data;
 
 typedef struct codigoPessoa{
-    int codP;
+    int cod;
 }cod_p;
 
 typedef struct codigoEstabelecimento{
@@ -43,12 +43,13 @@ typedef struct dadosVoluntario{
     char sobrenome[50];
     char cpf[20];
     char genero;
-    data data;
+    data nascimento;
     end endereco;
     tel telefone;
 }vol;
 
 typedef struct cdadosPessoaisFisica{
+    cod_p id;
     char nome[50];
     char genero;
     char cpf[20];
@@ -81,18 +82,15 @@ rest cadastrarRestaurante(void);
 pfisica apresentarPessoa(void);
 vol apresentarVoluntario(void);
 rest apresentarRestaurante(void);
-
+void apresentarPrioridade();
 
 int main()
 {
-    pfisica p1;
-    rest r1;
-    vol v1;
-    apresentarMenu(p1, r1, v1);
+    apresentarMenu();
     return 0;
 }
 
-void apresentarMenu(pfisica p1, rest r1, vol v1)
+void apresentarMenu()
 {
     int opt;
     printf ("\nMENU\n");
@@ -105,8 +103,8 @@ void apresentarMenu(pfisica p1, rest r1, vol v1)
     {
     case 1:
         do{
-            printf ("\n1 - Cadastrar pessoa\n");
-            printf ("2 - Cadastrar voluntario\n");
+            printf ("\n1 - Cadastrar Pessoa\n");
+            printf ("2 - Cadastrar Voluntario\n");
             printf ("3 - Cadastrar Restaurante\n");
             printf ("4 - Pesquisar Pessoa\n");
             printf ("5 - Pesquisar Voluntario\n");
@@ -117,27 +115,27 @@ void apresentarMenu(pfisica p1, rest r1, vol v1)
             switch (opt)
             {
             case 1:
-                p1 = cadastrarPessoa();
+                cadastrarPessoa();
                 break;
 
             case 2:
-                v1 = cadastrarVoluntario();
+                cadastrarVoluntario();
                 break;
 
             case 3:
-                r1 = cadastrarRestaurante();
+                cadastrarRestaurante();
                 break;
 
             case 4:
-                p1 = apresentarPessoa();
+                apresentarPessoa();
                 break;
 
             case 5:
-                v1 = apresentarVoluntario();
+                apresentarVoluntario();
                 break;
 
             case 6:
-                r1 = apresentarRestaurante();
+                apresentarRestaurante();
                 break;
             
             case 0:
@@ -171,7 +169,7 @@ pfisica cadastrarPessoa(void)
     char nome[50];
     char filename[50];
     printf("Digite o nome do arquivo: ");
-    scanf("%s", &nome);
+    scanf("%s", nome);
     sprintf(filename, "Pessoa %s.txt", nome);
     fp = fopen(filename,"w");
     printf ("\nNome completo: ");
@@ -210,8 +208,11 @@ pfisica cadastrarPessoa(void)
     scanf ("%d", &p.telefone.fixo);
     printf ("Celular: ");
     scanf ("%d", &p.telefone.celular);
+    apresentarPrioridade();
+    printf ("Prioridade: ");
+    scanf ("%d", &p.priori);
     printf ("Cadastro realizado com sucesso!\n");
-    fprintf(fp, "Nome: %sGênero: %c\nCPF: %sData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", p.nome, p.genero, p.cpf,  p.nascimento.dia, p.nascimento.mes, p.nascimento.ano, p.endereco.logradouro, p.endereco.numero, p.endereco.cep, p.endereco.cidade, p.endereco.estado, p.telefone.ddd, p.telefone.fixo, p.telefone.ddd, p.telefone.celular);
+    fprintf(fp, "Nome: %sGênero: %c\nCPF: %sData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d\nPrioridade: %d", p.nome, p.genero, p.cpf,  p.nascimento.dia, p.nascimento.mes, p.nascimento.ano, p.endereco.logradouro, p.endereco.numero, p.endereco.cep, p.endereco.cidade, p.endereco.estado, p.telefone.ddd, p.telefone.fixo, p.telefone.ddd, p.telefone.celular, p.priori);
     fclose(fp);
     return p;
 }
@@ -222,8 +223,8 @@ rest cadastrarRestaurante(void)
     FILE *fp;
     char nome[50];
     char filename[50];
-    printf("\0 Digite o nome do arquivo: ");
-    scanf("%s", &nome);
+    printf("Digite o nome do arquivo: ");
+    scanf("%s", nome);
     sprintf(filename, "Restaurante %s.txt", nome);
     printf("%s", filename);
     fp = fopen(filename, "w");
@@ -255,7 +256,7 @@ rest cadastrarRestaurante(void)
     printf ("Celular: ");
     scanf ("%d", &r.telefone.celular);
     printf ("Cadastro realizado com sucesso!\n");
-    fprintf(fp, "Nome: %sCNPJ: %d\nLogradouro: %sNumero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", r.nome, r.cnpj, r.endereco.logradouro, r.endereco.numero, r.endereco.cep, r.endereco.cidade, r.endereco.estado, r.telefone.ddd, r.telefone.fixo, r.telefone.ddd, r.telefone.celular);
+    fprintf(fp, "Nome: %sCNPJ: %sLogradouro: %sNumero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", r.nome, r.cnpj, r.endereco.logradouro, r.endereco.numero, r.endereco.cep, r.endereco.cidade, r.endereco.estado, r.telefone.ddd, r.telefone.fixo, r.telefone.ddd, r.telefone.celular);
     fclose(fp);
     return r;
 }
@@ -267,7 +268,7 @@ vol cadastrarVoluntario(void)
     char nome[50];
     char filename[50];
     printf("Digite o nome: ");
-    scanf("%s", &nome);
+    scanf("%s", nome);
     sprintf(filename, "Voluntario %s.txt", nome);
     fp = fopen(filename,"w");
     printf ("\nNome completo: ");
@@ -280,11 +281,11 @@ vol cadastrarVoluntario(void)
     scanf ("%c", &v.genero);
     printf ("Nascimento\n");
     printf ("Dia: ");
-    scanf ("%d", &v.data.dia);
+    scanf ("%d", &v.nascimento.dia);
     printf ("Mes: ");
-    scanf ("%d", &v.data.mes);
+    scanf ("%d", &v.nascimento.mes);
     printf ("Ano: ");
-    scanf ("%d", &v.data.ano);
+    scanf ("%d", &v.nascimento.ano);
     printf ("Endereco\n");
     printf ("Rua: ");
     fflush(stdin);
@@ -307,7 +308,7 @@ vol cadastrarVoluntario(void)
     printf ("Celular: ");
     scanf ("%d", &v.telefone.celular);
     printf ("Cadastro realizado com sucesso!\n");
-    fprintf(fp, "Nome: %sGênero: %c\nCPF: %d\nData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", v.nome, v.genero, v.cpf,  v.data.dia, v.data.mes, v.data.ano, v.endereco.logradouro, v.endereco.numero, v.endereco.cep, v.endereco.cidade, v.endereco.estado, v.telefone.ddd, v.telefone.fixo, v.telefone.ddd, v.telefone.celular);
+    fprintf(fp, "Nome: %sCPF: %sGênero: %c\nData de nascimento %d/%d/%d\nLogradouro: %sNúmero:%d\nCEP: %d\nCidade: %sEstado: %sTelefone (%d) %d\nCelular (%d) %d", v.nome, v.cpf, v.genero,  v.nascimento.dia, v.nascimento.mes, v.nascimento.ano, v.endereco.logradouro, v.endereco.numero, v.endereco.cep, v.endereco.cidade, v.endereco.estado, v.telefone.ddd, v.telefone.fixo, v.telefone.ddd, v.telefone.celular);
     fclose(fp);
     return v;
 }
@@ -321,6 +322,7 @@ pfisica apresentarPessoa(void)
     char linha[200];
     printf("Digite o nome: ");
     scanf("%s", nome);
+    printf("\n");
     sprintf(filename, "Pessoa %s.txt", nome);
     fp = fopen(filename,"r");
     if (fp){
@@ -332,11 +334,12 @@ pfisica apresentarPessoa(void)
         printf ("Falha ao abrir o arquivo");
     }
     fclose(fp);
+    return p;
 }
 
 vol apresentarVoluntario(void)
 {
-    vol r;
+    vol v;
     FILE *fp;
     char nome[50];
     char filename[50];
@@ -354,6 +357,7 @@ vol apresentarVoluntario(void)
         printf ("Falha ao abrir o arquivo");
     }
     fclose(fp);
+    return v;
 }
 
 rest apresentarRestaurante(void)
@@ -376,4 +380,14 @@ rest apresentarRestaurante(void)
         printf ("Falha ao abrir o arquivo");
     }
     fclose(fp);
+    return r;
+}
+
+void apresentarPrioridade()
+{
+    printf("\nPrioridade 1 (menos vulnerável): Famílias de baixa renda com moradia e sem filhos.\n");
+    printf("Prioridade 2: Famílias de baixa renda com moradia e com filhos de qualquer idade.\n");
+    printf("Prioridade 3: Famílias/Indivíduos adultos sem filhos em situação de rua.\n");
+    printf("Prioridade 4: Famílias com filhos com idade entre 10 e 16 anos em situação de rua.\n");
+    printf("Prioridade 5 (mais vulnerável): Famílias com filhos com idade menor de 10 anos de idade e em situação de rua.\n");
 }

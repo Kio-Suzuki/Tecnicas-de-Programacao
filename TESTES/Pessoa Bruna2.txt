@@ -1,0 +1,11 @@
+Nome: Bruna Souza
+Gênero: f
+CPF: 06429012356
+Data de nascimento 9/10/2001
+Logradouro: Inglaterra
+Número:56
+CEP: 86045320
+Cidade: Londrina
+Estado: PR
+Telefone (43) 0
+Celular (43) 999674321
