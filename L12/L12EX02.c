@@ -19,6 +19,12 @@ int main()
             m[i][j] = rand() %10;
         }
     }
+    for (int i = 0; i < l; i++){
+            for (int j = 0; j < c; j++){
+                printf ("%d ", m[i][j]);
+            }
+            printf ("\n");
+    }
     printf ("Valor a ser verificado: ");
     scanf ("%d", &v);
     printf ("%d", verificaValores(m, l, c, v));
