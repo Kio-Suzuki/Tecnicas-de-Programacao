@@ -20,6 +20,6 @@ void preencheVetor(int *v, int n)
 {
     srand(time(NULL));
     for(int i = 0; i < n; i++){
-        v[i] = rand()%100;
+        v[i] = rand()%10;
     }
 }

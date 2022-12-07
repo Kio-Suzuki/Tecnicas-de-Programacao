@@ -15,19 +15,18 @@ int main()
     }
     printf ("Qual valor deseja procurar: ");
     scanf ("%d", &x);
-    printf ("%d", procura(&vet, n, x));
+    printf ("Retornou: %d", procura(vet, n, x));
 }
 
 int procura(int *vet, int n, int x)
 {
     int cont = 0;
     for (int i = 0; i < n; i++){
-        printf ("vet[%d] = %d\n", i, vet[i]);
         if (vet[i] == x){
-            cont+1;    
+            cont++;    
         }
     }
-    if (cont == 1){
+    if (cont >= 1){
         return 1;
     }else{
         return 0;
