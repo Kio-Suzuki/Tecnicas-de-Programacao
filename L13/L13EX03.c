@@ -12,8 +12,8 @@ int main()
     int n;
     printf ("Quantidade de itens: ");
     scanf ("%d", &n);
-    item i;
-    item *ptrI = &i;
+    item i[n];
+    item **ptrI = &i;
     fp = fopen("compras.dat","wb");
     for (int i = 0; i < n; i++){
         printf ("Id: ");
